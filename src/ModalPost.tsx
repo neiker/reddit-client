@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, SafeAreaView } from 'react-native';
+import { Modal, SafeAreaView, ActivityIndicator } from 'react-native';
 import { WebView } from 'react-native-webview';
 import styled from 'styled-components/native';
 
@@ -10,6 +10,11 @@ const Header = styled.View`
   padding: 15px;
   border-bottom-width: 1px;
   border-bottom-color: #ddd;
+`;
+
+const HeaderContent = styled(SafeAreaView)`
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const CloseButton = styled.Text`
@@ -26,18 +31,24 @@ export const ModalPost: React.FunctionComponent<{
   onPresClose, 
   modalPost,
 }) => {
+  const [loading, setLoading] = React.useState<boolean>(true);
+
   return (
     <Modal animated>
       <Header>
-        <SafeAreaView>
+        <HeaderContent>
+          <ActivityIndicator size="small" animating={loading} color="#111" />
           <CloseButton onPress={onPresClose}>close</CloseButton>
-        </SafeAreaView>
+        </HeaderContent>
       </Header>
 
       <SafeAreaView style={{ flex: 1 }}>
         <WebView
           source={{ uri: `https://www.reddit.com/${modalPost.permalink}` }}
           style={{ flex: 1 }}
+          onLoadEnd={() => {
+            setLoading(false);
+          }}
         />
       </SafeAreaView>
     </Modal>
