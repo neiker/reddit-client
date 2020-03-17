@@ -8,4 +8,5 @@ export interface PicturePost {
   num_comments: number;
   score: number;
   author: string;
+  permalink: string;
 }

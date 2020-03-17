@@ -11,18 +11,15 @@
     "date-fns": "2.11.0",
     "expo": "~36.0.0",
     "react": "~16.9.0",
-    "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-screens": "2.0.0-alpha.12",
-    "react-native-web": "~0.11.7",
-    "react-query": "1.0.27",
-    "styled-components": "5.0.1"
+    "styled-components": "5.0.1",
+    "react-native-webview": "7.4.3",
+    "react-native-gesture-handler": "~1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@types/react": "~16.9.0",
     "@types/react-native": "~0.60.23",
-    "@types/react-query": "0.3.9",
     "babel-preset-expo": "~8.0.0",
     "typescript": "~3.6.3"
   },
