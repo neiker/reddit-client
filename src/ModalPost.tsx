@@ -24,6 +24,10 @@ const CloseButton = styled.Text`
   align-self: flex-end;
 `;
 
+const ContentWrapper = styled(SafeAreaView)`
+  flex: 1;
+`;
+
 export const ModalPost: React.FunctionComponent<{
   modalPost: PicturePost;
   onPresClose: () => void;
@@ -42,7 +46,7 @@ export const ModalPost: React.FunctionComponent<{
         </HeaderContent>
       </Header>
 
-      <SafeAreaView style={{ flex: 1 }}>
+      <ContentWrapper>
         <WebView
           source={{ uri: `https://www.reddit.com/${modalPost.permalink}` }}
           style={{ flex: 1 }}
@@ -50,7 +54,7 @@ export const ModalPost: React.FunctionComponent<{
             setLoading(false);
           }}
         />
-      </SafeAreaView>
+      </ContentWrapper>
     </Modal>
   );
 };

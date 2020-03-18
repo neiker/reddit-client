@@ -1,3 +1,5 @@
+export type Sort = 'top' | 'new' | 'hot' | 'controversial';
+
 export interface PicturePost {
   id: string;
   title: string;

@@ -4,7 +4,7 @@ import styles from 'styled-components/native';
 
 import { PostsList } from './PostsList';
 import { usePosts } from './usePosts';
-import { PicturePost } from './types';
+import { PicturePost, Sort } from './types';
 import { ModalPost } from './ModalPost';
 
 const FeedBackWrapper = styles.View`
@@ -13,8 +13,10 @@ const FeedBackWrapper = styles.View`
     align-items: center;
 `;
 
-export const PostsScreen: React.FunctionComponent = () => {
-  const { data, status, refetch } = usePosts();
+
+export const PostsScreen: React.FunctionComponent<{ sort: Sort }> = ({ sort }) => {
+  
+  const { data, status, refetch } = usePosts(sort);
   const [modalPost, setModalPost] = React.useState<PicturePost>();
   
   if (status === 'loading' && !data) {
@@ -49,6 +51,7 @@ export const PostsScreen: React.FunctionComponent = () => {
           }}
         />
       )}
+      
       <PostsList
         refreshing={status === 'loading'}
         posts={data}

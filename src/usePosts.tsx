@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PicturePost } from './types';
+import { PicturePost, Sort } from './types';
 
 type QueryStatus = 'loading' | 'error' | 'success';
 
@@ -13,22 +13,27 @@ interface QueryResult extends QueryState {
   refetch: () => void;
 }
 
-async function getPosts() {
-  const res = await fetch('https://api.reddit.com/r/pics/new.json');
+async function getPosts(sort: Sort) {
+  const res = await fetch(`https://api.reddit.com/r/pics/${sort}.json`);
 
   const body = await res.json();
 
   return body.data.children.map(child => child.data);
 }
 
-export function usePosts(): QueryResult {
+export function usePosts(sort: Sort): QueryResult {
   const [status, setStatus] = React.useState<QueryStatus>('loading');
   const [data, setData] = React.useState<PicturePost[]>();
+
+  React.useEffect(() => {
+    setData(undefined);
+    fetchPosts();
+  }, [sort])
 
   const fetchPosts = React.useCallback(() => {
     setStatus('loading');
 
-    getPosts()
+    getPosts(sort)
       .then(posts => {
         setStatus('success');
         setData(posts);
@@ -39,10 +44,6 @@ export function usePosts(): QueryResult {
         setStatus('error');
       });
   }, []);
-
-  React.useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
 
   return {
     data,
