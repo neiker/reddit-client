@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, ActivityIndicator, Button } from 'react-native';
+import { Text, ActivityIndicator, Button, SafeAreaView } from 'react-native';
 import styles from 'styled-components/native';
 
 import { PostsList } from './PostsList';
@@ -13,9 +13,7 @@ const FeedBackWrapper = styles.View`
     align-items: center;
 `;
 
-
 export const PostsScreen: React.FunctionComponent<{ sort: Sort }> = ({ sort }) => {
-  
   const { data, status, refetch } = usePosts(sort);
   const [modalPost, setModalPost] = React.useState<PicturePost>();
   
@@ -42,8 +40,8 @@ export const PostsScreen: React.FunctionComponent<{ sort: Sort }> = ({ sort }) =
   }
 
   return (
-    <>
-      {!!modalPost && (
+    <SafeAreaView>
+      {modalPost !== undefined && (
         <ModalPost
           modalPost={modalPost}
           onPresClose={() => {
@@ -60,6 +58,6 @@ export const PostsScreen: React.FunctionComponent<{ sort: Sort }> = ({ sort }) =
             setModalPost(post);
         }}
       />
-    </>
+    </SafeAreaView>
   );
 };

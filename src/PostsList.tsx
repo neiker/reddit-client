@@ -23,22 +23,22 @@ export const PostsList: React.FunctionComponent<{
   refreshing: boolean;
   onPressPost: (post: PicturePost) => void;
 }> = ({ posts, onRefresh, refreshing, onPressPost }) => (
-  <SafeAreaView>
-    <FlatList
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
-      ItemSeparatorComponent={Separator}
-      data={posts}
-      keyExtractor={item => item.id}
-      renderItem={({ item }) => (
-        <PostRow 
-          post={item} 
-          onPress={() => {
-            onPressPost(item);
-          }} 
-        />
-      )}
-    />
-  </SafeAreaView>
+
+  <FlatList
+    refreshControl={
+      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+    }
+    ItemSeparatorComponent={Separator}
+    data={posts}
+    keyExtractor={item => item.id}
+    renderItem={({ item }) => (
+      <PostRow 
+        post={item} 
+        onPress={() => {
+          onPressPost(item);
+        }} 
+      />
+    )}
+  />
+  
 );
