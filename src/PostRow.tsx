@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { format } from 'date-fns';
+import formatRelative from 'date-fns/formatRelative'
 import styled from 'styled-components/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -72,7 +72,7 @@ export const PostRow: React.FunctionComponent<{
 
       <DetailsContainer>
         <DetailsHeader>
-          <DateText>{format(new Date(post.created * 1000), 'Pp')}</DateText>
+          <DateText>{formatRelative(new Date(post.created_utc * 1000), new Date())}</DateText>
 
           <TitleText>{post.title}</TitleText>
         </DetailsHeader>

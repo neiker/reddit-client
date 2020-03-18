@@ -3,7 +3,7 @@ export type Sort = 'top' | 'new' | 'hot' | 'controversial';
 export interface PicturePost {
   id: string;
   title: string;
-  created: number;
+  created_utc: number;
   thumbnail: string;
   thumbnail_width: number;
   thumbnail_height: number;
