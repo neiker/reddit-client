@@ -5,7 +5,7 @@ import styles from 'styled-components/native';
 import { PostsList } from './PostsList';
 import { usePosts } from './usePosts';
 import { PicturePost, Sort } from './types';
-import { ModalPost } from './ModalPost';
+import { PostModal } from './PostModal';
 
 const FeedBackWrapper = styles.View`
     flex: 1;
@@ -42,7 +42,7 @@ export const PostsScreen: React.FunctionComponent<{ sort: Sort }> = ({ sort }) =
   return (
     <SafeAreaView>
       {modalPost !== undefined && (
-        <ModalPost
+        <PostModal
           modalPost={modalPost}
           onPresClose={() => {
             setModalPost(undefined);

@@ -28,7 +28,7 @@ const ContentWrapper = styled(SafeAreaView)`
   flex: 1;
 `;
 
-export const ModalPost: React.FunctionComponent<{
+export const PostModal: React.FunctionComponent<{
   modalPost: PicturePost;
   onPresClose: () => void;
 }> = ({ 
